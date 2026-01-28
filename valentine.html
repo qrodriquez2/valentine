@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be My Valentine?</title>
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #f2113e, #c71e21);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      max-width: 420px;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin-top: 10px;
+      margin-bottom: 25px;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 22px;
+      margin: 10px;
+      font-size: 1em;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #yes {
+      background: #ffffff;
+      color: #ff4d6d;
+      font-weight: bold;
+    }
+
+    #maybe {
+      background: #ffd6e0;
+      color: #b3003c;
+    }
+
+    #no {
+      background: #ff4d6d;
+      color: white;
+      position: absolute;
+    }
+
+    #message {
+      margin-top: 25px;
+      font-size: 1.2em;
+      font-weight: bold;
+      min-height: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Hey ZaDDDy 🍫😛</h1>
+    <p>I have one question I need to ask…</p>
+
+    <h2>Will you be my Valentine?</h2>
+
+    <button id="yes">YES 😌</button>
+    <button id="maybe">MAYBE 🤔</button>
+    <button id="no">NO 🙃</button>
+
+    <div id="message"></div>
+  </div>
+
+  <!-- 🎶 Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const yesBtn = document.getElementById('yes');
+    const maybeBtn = document.getElementById('maybe');
+    const noBtn = document.getElementById('no');
+    const message = document.getElementById('message');
+    const music = document.getElementById('bgMusic');
+
+    function playMusic() {
+      if (music.paused) {
+        music.play();
+      }
+    }
+
+    yesBtn.onclick = () => {
+      playMusic();
+      message.innerHTML = "Yayy!! 🎉💘 Thank you for doing me the honor of being my Valentine!😌";
+      document.body.style.background = "linear-gradient(135deg, #ff4d6d, #ff9a9e)";
+    };
+
+    maybeBtn.onclick = () => {
+      playMusic();
+      let count = 5;
+      message.innerHTML = `I'll give you ${count} seconds to rethink that…like have you lost your mind? 🤨`;
+
+      const timer = setInterval(() => {
+        count--;
+        if (count > 0) {
+          message.innerHTML = `I'll give you ${count} seconds to rethink that…like have you lost your mind? 🤨`;
+        } else {
+          clearInterval(timer);
+          yesBtn.click();
+        }
+      }, 1000);
+    };
+
+    noBtn.onmouseover = () => {
+      playMusic();
+      const x = Math.random() * 260;
+      const y = Math.random() * 160;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    };
+  </script>
+
+</body>
+</html>
